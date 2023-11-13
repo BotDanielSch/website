@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Domain Test</title>
+    <title>Fancy JavaScript Test</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
             margin: 50px;
         }
@@ -19,14 +19,30 @@
         p {
             color: #333;
         }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Hello, this is a custom domain test!</h1>
-    <p>This simple HTML page is hosted on GitHub Pages.</p>
-    <p>Replace this content with your own and deploy it to your GitHub repository.</p>
-    <p>Make sure to configure your custom domain in the repository settings.</p>
+    <h1>Hello, this is a fancy JavaScript test!</h1>
+    <p>Click the button below to change the greeting:</p>
+    <button onclick="changeGreeting()">Say Hello</button>
+
+    <script>
+        function changeGreeting() {
+            var greetingElement = document.getElementById('greeting');
+            greetingElement.innerHTML = 'Greetings from JavaScript!';
+        }
+    </script>
 </body>
 
 </html>
