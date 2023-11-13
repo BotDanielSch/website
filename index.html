@@ -13,11 +13,25 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: linear-gradient(to right, #3498db, #8e44ad);
-            background-image: url('https://source.unsplash.com/1920x1080/?nature');
-            background-size: cover;
             background-position: center;
             color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #background {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            filter: blur(10px);
+            transition: filter 1s ease;
+        }
+
+        #loaded-background {
+            display: none;
         }
 
         #welcome-container {
@@ -72,6 +86,8 @@
 </head>
 
 <body>
+    <img id="background" src="https://source.unsplash.com/1920x1080/?nature" alt="Background Image">
+    <img id="loaded-background" src="https://source.unsplash.com/1920x1080/?nature" alt="Background Image">
     <div id="welcome-container">
         <h1>Welcome to My Page</h1>
         <button onclick="showGreeting()">Say Hello</button>
@@ -79,6 +95,11 @@
     </div>
 
     <script>
+        document.getElementById('loaded-background').onload = function () {
+            document.getElementById('background').style.filter = 'blur(0)';
+            document.getElementById('loaded-background').style.display = 'none';
+        };
+
         function showGreeting() {
             document.getElementById('greeting').style.display = 'block';
         }
