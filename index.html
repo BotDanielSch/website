@@ -4,46 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy JavaScript Test</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-
-        h1 {
-            color: #3498db;
-        }
-
-        p {
-            color: #333;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-        }
-    </style>
+    <title>Simple To-Do List</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Hello, this is a fancy JavaScript test!</h1>
-    <p id="greeting">Welcome!</p>
-    <p>Click the button below to change the greeting:</p>
-    <button onclick="changeGreeting()">Say Hello</button>
-
-    <script>
-        function changeGreeting() {
-            var greetingElement = document.getElementById('greeting');
-            greetingElement.innerHTML = 'Greetings from JavaScript!';
-        }
-    </script>
+    <div class="container">
+        <h1>My To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Enter task">
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>
