@@ -12,12 +12,12 @@
 <body>
     <div>
         <h1>Markdown Table to Image Converter</h1>
-        <label for="markdownInput">Enter Markdown Table :) </label>
+        <label for="markdownInput">Enter Markdown Table:</label>
         <textarea id="markdownInput" rows="5" cols="50"></textarea>
         <br>
         <button onclick="convertToImage()">Convert to Image</button>
         <br>
-        <div id="outputImage" style="display: none;"></div>
+        <div id="outputImageContainer" style="display: none;"></div>
         <br>
         <a id="downloadLink" style="display: none;">Download Image</a>
     </div>
@@ -25,7 +25,7 @@
     <script>
         function convertToImage() {
             var markdownInput = document.getElementById('markdownInput').value;
-            var outputImage = document.getElementById('outputImage');
+            var outputImageContainer = document.getElementById('outputImageContainer');
             var downloadLink = document.getElementById('downloadLink');
 
             // Convert Markdown to HTML
@@ -38,15 +38,17 @@
 
             // Use html2canvas to create an image from the HTML content
             html2canvas(tempDiv).then(canvas => {
-                // Convert the canvas to a data URL
-                var imageDataUrl = canvas.toDataURL();
+                // Clear previous content
+                outputImageContainer.innerHTML = '';
 
-                // Display the image
-                outputImage.innerHTML = `<img src="${imageDataUrl}" alt="Converted Image">`;
-                outputImage.style.display = 'block';
+                // Append the canvas to the container
+                outputImageContainer.appendChild(canvas);
+
+                // Display the container
+                outputImageContainer.style.display = 'block';
 
                 // Provide a download link
-                downloadLink.href = imageDataUrl;
+                downloadLink.href = canvas.toDataURL();
                 downloadLink.download = 'converted_image.png';
                 downloadLink.style.display = 'block';
             });
