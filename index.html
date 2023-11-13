@@ -14,7 +14,6 @@
             justify-content: center;
             height: 100vh;
             background-position: center;
-            color: #fff;
             overflow: hidden;
             position: relative;
         }
@@ -32,6 +31,11 @@
 
         #loaded-background {
             display: none;
+        }
+
+        #foreground-container {
+            position: relative;
+            z-index: 1;
         }
 
         #welcome-container {
@@ -88,10 +92,12 @@
 <body>
     <img id="background" src="https://source.unsplash.com/1920x1080/?nature" alt="Background Image">
     <img id="loaded-background" src="https://source.unsplash.com/1920x1080/?nature" alt="Background Image">
-    <div id="welcome-container">
-        <h1>Welcome to My Page</h1>
-        <button onclick="showGreeting()">Say Hello</button>
-        <p id="greeting">Hello there! 👋</p>
+    <div id="foreground-container">
+        <div id="welcome-container">
+            <h1>Welcome to My Page</h1>
+            <button onclick="showGreeting()">Say Hello</button>
+            <p id="greeting">Hello there! 👋</p>
+        </div>
     </div>
 
     <script>
