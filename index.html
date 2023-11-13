@@ -4,18 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple To-Do List</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Markdown Table to Image Converter</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <h1>My To-Do List</h1>
-        <input type="text" id="taskInput" placeholder="Enter task">
-        <button onclick="addTask()">Add Task</button>
-        <ul id="taskList"></ul>
+    <div>
+        <h1>Markdown Table to Image Converter</h1>
+        <label for="markdownInput">Enter Markdown Table:</label>
+        <textarea id="markdownInput" rows="5" cols="50"></textarea>
+        <br>
+        <button onclick="convertToImage()">Convert to Image</button>
+        <br>
+        <div id="outputImage" style="display: none;"></div>
+        <br>
+        <a id="downloadLink" style="display: none;">Download Image</a>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        function convertToImage() {
+            var markdownInput = document.getElementById('markdownInput').value;
+            var outputImage = document.getElementById('outputImage');
+            var downloadLink = document.getElementById('downloadLink');
+
+            // Convert Markdown to HTML
+            var converter = new showdown.Converter();
+            var htmlCode = converter.makeHtml(markdownInput);
+
+            // Create a temporary div to hold the HTML code
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = htmlCode;
+
+            // Use html2canvas to create an image from the HTML content
+            html2canvas(tempDiv).then(canvas => {
+                // Convert the canvas to a data URL
+                var imageDataUrl = canvas.toDataURL();
+
+                // Display the image
+                outputImage.innerHTML = `<img src="${imageDataUrl}" alt="Converted Image">`;
+                outputImage.style.display = 'block';
+
+                // Provide a download link
+                downloadLink.href = imageDataUrl;
+                downloadLink.download = 'converted_image.png';
+                downloadLink.style.display = 'block';
+            });
+        }
+    </script>
 </body>
 
 </html>
