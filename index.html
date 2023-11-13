@@ -4,54 +4,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdown Table to Image Converter</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <title>Welcome to My Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to right, #3498db, #8e44ad);
+            background-image: url('https://source.unsplash.com/1920x1080/?nature');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        #welcome-container {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #333;
+            animation: typing 1s steps(40) forwards;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #219653;
+        }
+
+        #greeting {
+            display: none;
+            color: #27ae60;
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div>
-        <h1>Markdown Table to Image Converter</h1>
-        <label for="markdownInput">Enter Markdown Table:</label>
-        <textarea id="markdownInput" rows="5" cols="50"></textarea>
-        <br>
-        <button onclick="convertToImage()">Convert to Image</button>
-        <br>
-        <div id="outputImageContainer" style="display: none; border: 1px solid #ddd; padding: 10px; margin-top: 10px;"></div>
-        <br>
-        <a id="downloadLink" style="display: none;">Download Image</a>
+    <div id="welcome-container">
+        <h1>Welcome to My Page</h1>
+        <button onclick="showGreeting()">Say Hello</button>
+        <p id="greeting">Hello there! 👋</p>
     </div>
 
     <script>
-        function convertToImage() {
-            var markdownInput = document.getElementById('markdownInput').value;
-            var outputImageContainer = document.getElementById('outputImageContainer');
-            var downloadLink = document.getElementById('downloadLink');
-
-            // Convert Markdown to HTML
-            var converter = new showdown.Converter();
-            var htmlCode = converter.makeHtml(markdownInput);
-
-            // Create a temporary div to hold the HTML code
-            var tempDiv = document.createElement('div');
-            tempDiv.innerHTML = htmlCode;
-
-            // Use html2canvas to create an image from the HTML content
-            html2canvas(tempDiv, { scale: 2 }).then(canvas => {
-                // Clear previous content
-                outputImageContainer.innerHTML = '';
-
-                // Append the canvas to the container
-                outputImageContainer.appendChild(canvas);
-
-                // Display the container
-                outputImageContainer.style.display = 'block';
-
-                // Provide a download link
-                downloadLink.href = canvas.toDataURL();
-                downloadLink.download = 'converted_image.png';
-                downloadLink.style.display = 'block';
-            });
+        function showGreeting() {
+            document.getElementById('greeting').style.display = 'block';
         }
     </script>
 </body>
