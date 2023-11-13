@@ -17,7 +17,7 @@
         <br>
         <button onclick="convertToImage()">Convert to Image</button>
         <br>
-        <div id="outputImageContainer" style="display: none;"></div>
+        <div id="outputImageContainer" style="display: none; border: 1px solid #ddd; padding: 10px; margin-top: 10px;"></div>
         <br>
         <a id="downloadLink" style="display: none;">Download Image</a>
     </div>
@@ -37,7 +37,7 @@
             tempDiv.innerHTML = htmlCode;
 
             // Use html2canvas to create an image from the HTML content
-            html2canvas(tempDiv).then(canvas => {
+            html2canvas(tempDiv, { scale: 2 }).then(canvas => {
                 // Clear previous content
                 outputImageContainer.innerHTML = '';
 
